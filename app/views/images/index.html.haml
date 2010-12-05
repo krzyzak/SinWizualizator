@@ -1,1 +1,21 @@
-Hello world!
+%h1 SinWizualizator
+#info
+	#image=image_tag(@image.path)
+	%p
+		Sieć uważa, że to:
+		%strong=@matrix.output
+	%p
+		Prawidłowy wynik to:
+		%strong=@matrix.target
+	%p.result
+		Odczyt 
+		-if @matrix.passed?
+			%strong.pass Poprawny
+		-else
+			%strong.fail Niepoprawny
+.clear
+#buttons
+	=link_to "&laquo;".html_safe, image_path(@id.to_i-1)
+	=form_for(:image, :url => find_images_path) do |f|
+		=f.text_field "id", {:value => @id, :size => 5}
+	=link_to "&raquo;".html_safe, image_path(@id.to_i+1)

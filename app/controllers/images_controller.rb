@@ -1,9 +1,21 @@
 class ImagesController < ApplicationController
   def index
-    #@image = Image.first
+    @id = 1
+    @image = Image.find_or_create(@id)
+    @matrix = Matrix.find(@id)
+  end
+
+  def find
+    @id = params[:image][:id]
+    @image = Image.find_or_create(@id)
+    @matrix = Matrix.find(@id)
+    render :action => "index"
   end
 
   def show
-    @image = Image.find_or_create(params[:id])
+    @id = params[:id]
+    @image = Image.find_or_create(@id)
+    @matrix = Matrix.find(@id)
+    render :action => "index"
   end
 end
