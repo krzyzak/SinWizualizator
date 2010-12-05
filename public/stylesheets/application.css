@@ -51,3 +51,9 @@ input{
 .pass{
 	color: green;
 }
+dl{
+	text-align:left;
+}
+dt{
+	font-weight:bold;
+}
