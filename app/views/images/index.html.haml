@@ -15,7 +15,7 @@
 			%strong.fail Niepoprawny
 .clear
 #buttons
-	=link_to "&laquo;".html_safe, image_path(@id.to_i-1)
+	=link_to "&laquo;".html_safe, image_path(@id-1) if @id > 1
 	=form_for(:image, :url => find_images_path) do |f|
 		=f.text_field "id", {:value => @id, :size => 5}
-	=link_to "&raquo;".html_safe, image_path(@id.to_i+1)
+	=link_to "&raquo;".html_safe, image_path(@id+1) unless @id >= 5035
