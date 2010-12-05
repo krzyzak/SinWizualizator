@@ -4,7 +4,7 @@ class Image
 
   attr_accessor :name
   attr_reader :exists
-  @@base_dir = "/test"
+  @@base_dir = "/images"
   @@ext = "png"
   validate do |image|
     image.errors.add_to_base("Name can't be blank") if image.name.blank?
