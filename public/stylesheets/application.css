@@ -1,0 +1,53 @@
+body {
+  background-color: #FFF;
+  font-family: Verdana, Helvetica, Arial;
+  font-size: 14px;
+}
+
+a img {
+  border: none;
+}
+
+a {
+  color: #0000FF;
+}
+
+body {
+  background-color: #4B7399;
+}
+h1{
+	margin:0 auto;
+}
+form{
+	margin: 0;
+	padding: 0;
+	display:inline;
+}
+#container {
+  width: 75%;
+  margin: 0 auto;
+  background-color: #FFF;
+  padding: 20px 40px;
+  border: solid 1px black;
+  margin-top: 20px;
+	text-align:center;
+}
+
+.clear {
+  clear: both;
+}
+input{
+	font-size: 20px;
+}
+#buttons{
+	margin-top: 30px;
+}
+#buttons a{
+	padding: 20px 45px;
+}
+.fail{
+	color: red;
+}
+.pass{
+	color: green;
+}

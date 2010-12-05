@@ -1,1 +1,11 @@
-=yield
+!!!
+%html
+	%head
+		%meta{ :charset=>'utf-8' }
+		%title SinWizualizator
+		=csrf_meta_tag
+		=stylesheet_link_tag 'application'
+		/ =javascript_include_tag 'jquery','jquery.impromptu.js','jquery.ui.js',"jquery.jqplot.js", 
+	%body
+		#container
+			=yield
