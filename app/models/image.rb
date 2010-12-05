@@ -37,7 +37,7 @@ class Image
   end
 
   def self.find(name)
-    "#{@@base_dir}/#{name}.#{@@ext}" if File.exists?("#{@@base_dir}/#{name}.#{@@ext}")
+   Image.new(name, true) if File.exists?("#{@@base_dir}/#{name}.#{@@ext}")
   end
 
   def self.find_or_create(name)
