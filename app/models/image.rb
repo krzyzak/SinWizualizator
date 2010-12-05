@@ -1,3 +1,4 @@
+require 'RMagick'
 class Image
   include ActiveModel::Validations
   extend ActiveModel::Naming
