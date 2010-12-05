@@ -61,7 +61,7 @@ class Image
   end
 
   def self.find_or_create(name)
-    if File.exists?("#{@@base_dir}/#{name}.#{@@ext}")
+    if File.exists?(Rails.root.join('public',"images", "#{name}.#{@@ext}").to_s)
       "#{@@base_dir}/#{name}.#{@@ext}"
     else
       @image = Image.new(name)
