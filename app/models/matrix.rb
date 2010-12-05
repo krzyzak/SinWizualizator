@@ -21,6 +21,7 @@ class Matrix
   end
 
   def self.find(id)
+    id = id.to_i
     raise "Id out of range" unless (0...5036).include?(id)
     self.init_files unless Rails.cache.exist?(:data)
     Matrix.new({:data => @@data[id].split(","), :output => @@output[id].split(","), :target => @@target[id].split(",") })
