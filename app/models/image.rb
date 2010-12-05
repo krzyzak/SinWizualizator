@@ -5,14 +5,14 @@ class Image
   attr_accessor :name
   attr_reader :exists
   @@base_dir = "/test"
-  @ext = "png"
+  @@ext = "png"
   validate do |image|
-      image.errors.add_to_base("Name can't be blank") if image.name.blank?
-    end
+    image.errors.add_to_base("Name can't be blank") if image.name.blank?
+  end
 
-  def initialize(name = nil)
+  def initialize(name = nil, exists = false)
     @name = name
-    @exists = false
+    @exists = exists
   end
 
   def persisted?
@@ -28,7 +28,7 @@ class Image
   end
 
   def path
-    "#{@base_dir}/#{self.name}.#{@ext}"
+    "#{@@base_dir}/#{self.name}.#{@@ext}"
   end
 
   def save
@@ -46,7 +46,7 @@ class Image
     else
       @image = Image.new(name)
       @image.save
-      @image.path
+      @image
     end
   end
 end
