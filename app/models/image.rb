@@ -32,8 +32,27 @@ class Image
   end
 
   def save
-    #TODO: implement image saving
-    @exists = true
+    @matrix = Matrix.find(self.name.to_i)
+    @image_size = 128
+    @image = Magick::Image.new(@image_size, @image_size)
+    @size = @image_size / 8
+    x = 0
+    y = 0
+    65.times do |i|
+      @data = Magick::Draw.new
+      color = 16 * @matrix.data[i].to_i
+      @data.fill("rgb(#{color},#{color},#{color})")
+      @data.rectangle(x, y, x + @size, y + @size)
+      x += @size
+      x = 0 if (i % 8 == 0 && i != 0)
+      y += @size if (i % 8 == 0 && i != 0)
+      @data.draw(@image)
+    end
+    if @image.write(Rails.root.join('public',"images", "#{self.name}.#{@@ext}").to_s)
+      @exists = true
+    else
+      false
+    end   
   end
 
   def self.find(name)
