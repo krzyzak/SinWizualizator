@@ -41,7 +41,7 @@ class Image
     y = 0
     65.times do |i|
       @data = Magick::Draw.new
-      color = 16 * @matrix.data[i].to_i
+      color = 255 - (16 * @matrix.data[i].to_i)
       @data.fill("rgb(#{color},#{color},#{color})")
       @data.rectangle(x, y, x + @size, y + @size)
       x += @size
