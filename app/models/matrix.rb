@@ -24,7 +24,7 @@ class Matrix
     id = id.to_i
     raise ArgumentError, "Id out of range" unless (0...5036).include?(id)
     self.init_files unless Rails.cache.exist?(:data)
-    Matrix.new({:data => @@data[id].split(","), :output => @@output[id].split(","), :target => @@target[id].split(",") })
+    Matrix.new({:data => @@data[id].split(","), :output => @@output[id], :target => @@target[id] })
   end
 
   def passed?
