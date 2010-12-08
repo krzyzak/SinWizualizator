@@ -14,16 +14,29 @@ class Matrix
     @attributes = attributes.with_indifferent_access
   end
 
-  def self.init_files
+  def self.get_data_from_files
     @@data = YAML::load( File.open(Rails.root.join('config', 'data.yml').to_s) )
     @@output = YAML::load( File.open(Rails.root.join('config', 'outputs.yml').to_s) )
     @@target = YAML::load( File.open(Rails.root.join('config', 'targets.yml').to_s) )
+    Rails.cache.write :data, @@data
+    Rails.cache.write :output, @@output
+    Rails.cache.write :target, @@target
+  end
+
+  def self.get_data_from_cache
+    @@data = Rails.cache.read :data
+    @@output = Rails.cache.read :output
+    @@target = Rails.cache.read :target
   end
 
   def self.find(id)
     id = id.to_i
     raise ArgumentError, "Id out of range" unless (0...5036).include?(id)
-    self.init_files unless Rails.cache.exist?(:data)
+    if Rails.cache.exist?(:data)
+      self.get_data_from_cache
+    else
+      self.get_data_from_files
+    end
     Matrix.new({:data => @@data[id].split(","), :output => @@output[id], :target => @@target[id] })
   end
 
